@@ -865,4 +865,323 @@ async def test_backoff_sleep_intervals_double_and_cap(monkeypatch):
 
 ```
 
+## Nov 17: xml work
+
+assets/templates/CanadianDerivatives_OnboardingStatus.xml:
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Source=Target deliberately identical for now - real Target renames come later,
+     once transform is actually needed (see docs/decisions.md). -->
+<ExtractConfig ExtractType="CSV" DateFormat="M/d/yyyy h:mm:ss tt" MaxRetry="5">
+    <RecordTemplate>
+        <Column Assignment="1" Source="Fenergo ID" Target="Fenergo ID" DataType="String" />
+        <Column Assignment="2" Source="Legal Entity Type" Target="Legal Entity Type" DataType="String" />
+        <Column Assignment="3" Source="Legal Entity Name" Target="Legal Entity Name" DataType="String" />
+        <Column Assignment="4" Source="LEI" Target="LEI" DataType="String" />
+        <Column Assignment="5" Source="Associated Asset Manager" Target="Associated Asset Manager" DataType="String" />
+        <Column Assignment="6" Source="Regulatory Status" Target="Regulatory Status" DataType="String" />
+        <Column Assignment="7" Source="Canadian Reporting Requirements Completed" Target="Canadian Reporting Requirements Completed" DataType="String" />
+        <Column Assignment="8" Source="Canadian Person Representation" Target="Canadian Person Representation" DataType="String" />
+        <Column Assignment="9" Source="Country of Incorporation" Target="Country of Incorporation" DataType="String" />
+        <Column Assignment="10" Source="Principal Place of Business" Target="Principal Place of Business" DataType="String" />
+        <Column Assignment="11" Source="NonGBM or Agency Indicator" Target="NonGBM or Agency Indicator" DataType="String" />
+        <Column Assignment="12" Source="NonGBM or Agency Category" Target="NonGBM or Agency Category" DataType="String" />
+        <Column Assignment="13" Source="KYC Level" Target="KYC Level" DataType="String" />
+        <Column Assignment="14" Source="Data Source" Target="Data Source" DataType="String" />
+        <Column Assignment="15" Source="Markit Match ID" Target="Markit Match ID" DataType="String" />
+        <Column Assignment="16" Source="ISDA Amend" Target="ISDA Amend" DataType="String" />
+        <Column Assignment="17" Source="Bilateral Data Source" Target="Bilateral Data Source" DataType="String" />
+        <Column Assignment="18" Source="Canadian Representation Agreement" Target="Canadian Representation Agreement" DataType="String" />
+        <Column Assignment="19" Source="ISDA Status" Target="ISDA Status" DataType="String" />
+        <Column Assignment="20" Source="Jurisdiction of Incorporation_HO_PPB" Target="Jurisdiction of Incorporation_HO_PPB" DataType="String" />
+        <Column Assignment="21" Source="Registered Derivatives Dealer" Target="Registered Derivatives Dealer" DataType="String" />
+        <Column Assignment="22" Source="Province_RDD" Target="Province_RDD" DataType="String" />
+        <Column Assignment="23" Source="Canadian Affiliate" Target="Canadian Affiliate" DataType="String" />
+        <Column Assignment="24" Source="Province_Affiliate" Target="Province_Affiliate" DataType="String" />
+        <Column Assignment="25" Source="Additional Covenant Reporting" Target="Additional Covenant Reporting" DataType="String" />
+        <Column Assignment="26" Source="Province_AdditionalCovenantResponsibility" Target="Province_AdditionalCovenantResponsibility" DataType="String" />
+        <Column Assignment="27" Source="Consent to Disclosure" Target="Consent to Disclosure" DataType="String" />
+        <Column Assignment="28" Source="Reporting Party Rules" Target="Reporting Party Rules" DataType="String" />
+        <Column Assignment="29" Source="ISDA Master Agreement" Target="ISDA Master Agreement" DataType="String" />
+        <Column Assignment="30" Source="Multilateral Agreement For Dealers" Target="Multilateral Agreement For Dealers" DataType="String" />
+        <Column Assignment="31" Source="Clearing Exception" Target="Clearing Exception" DataType="String" />
+        <Column Assignment="32" Source="CAD PCA Principal Type" Target="CAD PCA Principal Type" DataType="String" />
+        <Column Assignment="33" Source="Consent to all Reporting Requirements" Target="Consent to all Reporting Requirements" DataType="String" />
+        <Column Assignment="34" Source="Above participant affiliate threshold" Target="Above participant affiliate threshold" DataType="String" />
+        <Column Assignment="35" Source="Above local counterparty threshold" Target="Above local counterparty threshold" DataType="String" />
+        <Column Assignment="36" Source="OTC Regulated Clearing Agency Participant" Target="OTC Regulated Clearing Agency Participant" DataType="String" />
+        <Column Assignment="37" Source="Crown Corporation Entity" Target="Crown Corporation Entity" DataType="String" />
+        <Column Assignment="38" Source="Approved Canadian Derivative Workflow" Target="Approved Canadian Derivative Workflow" DataType="String" />
+        <Column Assignment="39" Source="Latest Managerial Approval" Target="Latest Managerial Approval" DataType="String" />
+        <Column Assignment="40" Source="LE_AnyCompletedCANDERClassificationInCompletedCase" Target="LE_AnyCompletedCANDERClassificationInCompletedCase" DataType="String" />
+        <Column Assignment="41" Source="Cander_DeScope" Target="Cander_DeScope" DataType="String" />
+    </RecordTemplate>
+</ExtractConfig>
+
+```
+
+assets/templates/Fenergo_RegCentral_EUEMIRExtract.xml"
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Source=Target deliberately identical for now - real Target renames come later,
+     once transform is actually needed (see docs/decisions.md). Regenerated 2026-11-17 - query reworked, new column set/order. -->
+<ExtractConfig ExtractType="CSV" DateFormat="M/d/yyyy h:mm:ss tt" MaxRetry="5">
+    <RecordTemplate>
+        <Column Assignment="1" Source="FID" Target="FID" DataType="String" />
+        <Column Assignment="2" Source="full_legal_name_of_the_named_entity" Target="full_legal_name_of_the_named_entity" DataType="String" />
+        <Column Assignment="3" Source="lei_of_the_named_entity" Target="lei_of_the_named_entity" DataType="String" />
+        <Column Assignment="4" Source="third_country_entity" Target="third_country_entity" DataType="String" />
+        <Column Assignment="5" Source="eu_branches" Target="eu_branches" DataType="String" />
+        <Column Assignment="6" Source="dsf_guarantee_s" Target="dsf_guarantee_s" DataType="String" />
+        <Column Assignment="7" Source="fully_or_partially_out_of_scope_for_emir" Target="fully_or_partially_out_of_scope_for_emir" DataType="String" />
+        <Column Assignment="8" Source="entity_type_that_is_fully_or_partially_out_of_scope" Target="entity_type_that_is_fully_or_partially_out_of_scope" DataType="String" />
+        <Column Assignment="9" Source="reporting_obligation" Target="reporting_obligation" DataType="String" />
+        <Column Assignment="10" Source="emir_entity_type" Target="emir_entity_type" DataType="String" />
+        <Column Assignment="11" Source="fc_corporate_sector" Target="fc_corporate_sector" DataType="String" />
+        <Column Assignment="12" Source="small_fc" Target="small_fc" DataType="String" />
+        <Column Assignment="13" Source="fc_clearing_start_date" Target="fc_clearing_start_date" DataType="String" />
+        <Column Assignment="14" Source="fc_clearing_start_date_other" Target="fc_clearing_start_date_other" DataType="String" />
+        <Column Assignment="15" Source="is_the_entity_a_pension_scheme_arrangement_psa" Target="is_the_entity_a_pension_scheme_arrangement_psa" DataType="String" />
+        <Column Assignment="16" Source="type_of_pension_scheme_arrangement" Target="type_of_pension_scheme_arrangement" DataType="String" />
+        <Column Assignment="17" Source="use_of_the_pension_scheme_arrangement_exemption" Target="use_of_the_pension_scheme_arrangement_exemption" DataType="String" />
+        <Column Assignment="18" Source="institution" Target="institution" DataType="String" />
+        <Column Assignment="19" Source="nfc_corporate_sector" Target="nfc_corporate_sector" DataType="String" />
+        <Column Assignment="20" Source="clearing_threshold" Target="clearing_threshold" DataType="String" />
+        <Column Assignment="21" Source="otc_credit_derivatives_contracts" Target="otc_credit_derivatives_contracts" DataType="String" />
+        <Column Assignment="22" Source="clearing_date_for_otc_credit_derivatives_contracts" Target="clearing_date_for_otc_credit_derivatives_contracts" DataType="String" />
+        <Column Assignment="23" Source="otc_interest_rate_derivative_contracts" Target="otc_interest_rate_derivative_contracts" DataType="String" />
+        <Column Assignment="24" Source="clearing_date_for_otc_interest_rate_derivative_contracts" Target="clearing_date_for_otc_interest_rate_derivative_contracts" DataType="String" />
+        <Column Assignment="25" Source="asset_class_es_where_threshold_is_exceeded" Target="asset_class_es_where_threshold_is_exceeded" DataType="String" />
+        <Column Assignment="26" Source="is_the_named_entity_a_member_of_an_aana_group" Target="is_the_named_entity_a_member_of_an_aana_group" DataType="String" />
+        <Column Assignment="27" Source="ultimate_parent_of_such_aana_group" Target="ultimate_parent_of_such_aana_group" DataType="String" />
+        <Column Assignment="28" Source="aana_threshold_estimate" Target="aana_threshold_estimate" DataType="String" />
+        <Column Assignment="29" Source="adherent_s_portfolio_reconciliation_process_status" Target="adherent_s_portfolio_reconciliation_process_status" DataType="String" />
+        <Column Assignment="30" Source="adherent_s_local_business_days" Target="adherent_s_local_business_days" DataType="String" />
+        <Column Assignment="31" Source="adherent_s_affiliate_s_which_are_its_agent" Target="adherent_s_affiliate_s_which_are_its_agent" DataType="String" />
+        <Column Assignment="32" Source="adherent_s_use_of_a_third_party_service_provider" Target="adherent_s_use_of_a_third_party_service_provider" DataType="String" />
+        <Column Assignment="33" Source="adherent_s_contact_details_for_portfolio_data" Target="adherent_s_contact_details_for_portfolio_data" DataType="String" />
+        <Column Assignment="34" Source="notice_of_a_discrepancy" Target="notice_of_a_discrepancy" DataType="String" />
+        <Column Assignment="35" Source="dispute_notice" Target="dispute_notice" DataType="String" />
+        <Column Assignment="36" Source="contact_details" Target="contact_details" DataType="String" />
+        <Column Assignment="37" Source="mandatory_reporting" Target="mandatory_reporting" DataType="String" />
+        <Column Assignment="38" Source="delegated_reporting" Target="delegated_reporting" DataType="String" />
+        <Column Assignment="39" Source="delegated_to" Target="delegated_to" DataType="String" />
+        <Column Assignment="40" Source="delegated_reporting_entity_lei" Target="delegated_reporting_entity_lei" DataType="String" />
+        <Column Assignment="41" Source="delegated_reporting_effective_date" Target="delegated_reporting_effective_date" DataType="String" />
+        <Column Assignment="42" Source="applicable_reporting_regime_s_for_client_or_fund" Target="applicable_reporting_regime_s_for_client_or_fund" DataType="String" />
+        <Column Assignment="43" Source="relevant_transactions_and_related_elections" Target="relevant_transactions_and_related_elections" DataType="String" />
+        <Column Assignment="44" Source="mandatory_reporting_opt_out" Target="mandatory_reporting_opt_out" DataType="String" />
+        <Column Assignment="45" Source="mandatory_reporting_opt_out_comments" Target="mandatory_reporting_opt_out_comments" DataType="String" />
+        <Column Assignment="46" Source="disclosure_of_client_status" Target="disclosure_of_client_status" DataType="String" />
+        <Column Assignment="47" Source="transition_between_reporting_models" Target="transition_between_reporting_models" DataType="String" />
+        <Column Assignment="48" Source="relevant_data" Target="relevant_data" DataType="String" />
+        <Column Assignment="49" Source="counterparty_data" Target="counterparty_data" DataType="String" />
+        <Column Assignment="50" Source="counterparty_data_comments" Target="counterparty_data_comments" DataType="String" />
+        <Column Assignment="51" Source="reporting_party_affiliate" Target="reporting_party_affiliate" DataType="String" />
+        <Column Assignment="52" Source="relevant_trade_repository" Target="relevant_trade_repository" DataType="String" />
+        <Column Assignment="53" Source="notice_periods_in_respect_of_amendments" Target="notice_periods_in_respect_of_amendments" DataType="String" />
+        <Column Assignment="54" Source="termination_notice_period" Target="termination_notice_period" DataType="String" />
+        <Column Assignment="55" Source="contact_information" Target="contact_information" DataType="String" />
+        <Column Assignment="56" Source="confidentiality_waiver" Target="confidentiality_waiver" DataType="String" />
+        <Column Assignment="57" Source="confidentiality_waiver_comments" Target="confidentiality_waiver_comments" DataType="String" />
+        <Column Assignment="58" Source="process_agent" Target="process_agent" DataType="String" />
+        <Column Assignment="59" Source="static_data" Target="static_data" DataType="String" />
+        <Column Assignment="60" Source="static_data_comments" Target="static_data_comments" DataType="String" />
+        <Column Assignment="61" Source="eu_legal_entity" Target="eu_legal_entity" DataType="String" />
+        <Column Assignment="62" Source="emir_onboarding_requirements_met" Target="emir_onboarding_requirements_met" DataType="String" />
+        <Column Assignment="63" Source="country_of_incorporation_establishment" Target="country_of_incorporation_establishment" DataType="String" />
+        <Column Assignment="64" Source="isda_status" Target="isda_status" DataType="String" />
+        <Column Assignment="65" Source="registered_address_country" Target="registered_address_country" DataType="String" />
+        <Column Assignment="66" Source="eea_counterparty" Target="eea_counterparty" DataType="String" />
+        <Column Assignment="67" Source="portfolio_reconciliation" Target="portfolio_reconciliation" DataType="String" />
+        <Column Assignment="68" Source="exempt_from_clearing" Target="exempt_from_clearing" DataType="String" />
+        <Column Assignment="69" Source="master_agreement_type" Target="master_agreement_type" DataType="String" />
+        <Column Assignment="70" Source="emir_isda_protocol_adherence" Target="emir_isda_protocol_adherence" DataType="String" />
+        <Column Assignment="71" Source="alternative_investment_fund" Target="alternative_investment_fund" DataType="String" />
+        <Column Assignment="72" Source="associated_asset_manager" Target="associated_asset_manager" DataType="String" />
+        <Column Assignment="73" Source="match_id_markit" Target="match_id_markit" DataType="String" />
+        <Column Assignment="74" Source="data_source" Target="data_source" DataType="String" />
+        <Column Assignment="75" Source="emir_classification_source" Target="emir_classification_source" DataType="String" />
+        <Column Assignment="76" Source="cleared_derivative_execution_agreement" Target="cleared_derivative_execution_agreement" DataType="String" />
+        <Column Assignment="77" Source="clearing_exemption_type" Target="clearing_exemption_type" DataType="String" />
+        <Column Assignment="78" Source="g4_currency_irs_category" Target="g4_currency_irs_category" DataType="String" />
+        <Column Assignment="79" Source="non_g4_second_rate_currency_irs_category" Target="non_g4_second_rate_currency_irs_category" DataType="String" />
+        <Column Assignment="80" Source="cds_itraxx_index_ccps" Target="cds_itraxx_index_ccps" DataType="String" />
+        <Column Assignment="81" Source="uti_generation" Target="uti_generation" DataType="String" />
+    </RecordTemplate>
+</ExtractConfig>
+
+```
+
+assets/templates/Fenergo_RegCentral_UKEMIRExtract.xml:
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Source=Target deliberately identical for now - real Target renames come later,
+     once transform is actually needed (see docs/decisions.md). Regenerated 2026-11-17 - query reworked, new column set/order. -->
+<ExtractConfig ExtractType="CSV" DateFormat="M/d/yyyy h:mm:ss tt" MaxRetry="5">
+    <RecordTemplate>
+        <Column Assignment="1" Source="FID" Target="FID" DataType="String" />
+        <Column Assignment="2" Source="full_legal_name_of_the_named_entity" Target="full_legal_name_of_the_named_entity" DataType="String" />
+        <Column Assignment="3" Source="lei_of_the_named_entity" Target="lei_of_the_named_entity" DataType="String" />
+        <Column Assignment="4" Source="third_country_entity" Target="third_country_entity" DataType="String" />
+        <Column Assignment="5" Source="uk_branches" Target="uk_branches" DataType="String" />
+        <Column Assignment="6" Source="dsf_guarantee_s" Target="dsf_guarantee_s" DataType="String" />
+        <Column Assignment="7" Source="fully_or_partially_out_of_scope_for_emir" Target="fully_or_partially_out_of_scope_for_emir" DataType="String" />
+        <Column Assignment="8" Source="entity_type_that_is_fully_or_partially_out_of_scope" Target="entity_type_that_is_fully_or_partially_out_of_scope" DataType="String" />
+        <Column Assignment="9" Source="reporting_obligation" Target="reporting_obligation" DataType="String" />
+        <Column Assignment="10" Source="emir_entity_type" Target="emir_entity_type" DataType="String" />
+        <Column Assignment="11" Source="fc_corporate_sector" Target="fc_corporate_sector" DataType="String" />
+        <Column Assignment="12" Source="small_fc" Target="small_fc" DataType="String" />
+        <Column Assignment="13" Source="fc_clearing_start_date" Target="fc_clearing_start_date" DataType="String" />
+        <Column Assignment="14" Source="fc_clearing_start_date_other" Target="fc_clearing_start_date_other" DataType="String" />
+        <Column Assignment="15" Source="is_the_entity_a_pension_scheme_arrangement_psa" Target="is_the_entity_a_pension_scheme_arrangement_psa" DataType="String" />
+        <Column Assignment="16" Source="type_of_pension_scheme_arrangement" Target="type_of_pension_scheme_arrangement" DataType="String" />
+        <Column Assignment="17" Source="use_of_the_pension_scheme_arrangement_exemption" Target="use_of_the_pension_scheme_arrangement_exemption" DataType="String" />
+        <Column Assignment="18" Source="institution" Target="institution" DataType="String" />
+        <Column Assignment="19" Source="nfc_corporate_sector" Target="nfc_corporate_sector" DataType="String" />
+        <Column Assignment="20" Source="clearing_threshold" Target="clearing_threshold" DataType="String" />
+        <Column Assignment="21" Source="otc_credit_derivatives_contracts" Target="otc_credit_derivatives_contracts" DataType="String" />
+        <Column Assignment="22" Source="clearing_date_for_otc_credit_derivatives_contracts" Target="clearing_date_for_otc_credit_derivatives_contracts" DataType="String" />
+        <Column Assignment="23" Source="otc_interest_rate_derivative_contracts" Target="otc_interest_rate_derivative_contracts" DataType="String" />
+        <Column Assignment="24" Source="clearing_date_for_otc_interest_rate_derivative_contracts" Target="clearing_date_for_otc_interest_rate_derivative_contracts" DataType="String" />
+        <Column Assignment="25" Source="asset_class_es_where_threshold_is_exceeded" Target="asset_class_es_where_threshold_is_exceeded" DataType="String" />
+        <Column Assignment="26" Source="is_the_named_entity_a_member_of_an_aana_group" Target="is_the_named_entity_a_member_of_an_aana_group" DataType="String" />
+        <Column Assignment="27" Source="ultimate_parent_of_such_aana_group" Target="ultimate_parent_of_such_aana_group" DataType="String" />
+        <Column Assignment="28" Source="aana_threshold_estimate" Target="aana_threshold_estimate" DataType="String" />
+        <Column Assignment="29" Source="adherent_s_portfolio_reconciliation_process_status" Target="adherent_s_portfolio_reconciliation_process_status" DataType="String" />
+        <Column Assignment="30" Source="adherent_s_local_business_days" Target="adherent_s_local_business_days" DataType="String" />
+        <Column Assignment="31" Source="adherent_s_affiliate_s_which_are_its_agent" Target="adherent_s_affiliate_s_which_are_its_agent" DataType="String" />
+        <Column Assignment="32" Source="adherent_s_use_of_a_third_party_service_provider" Target="adherent_s_use_of_a_third_party_service_provider" DataType="String" />
+        <Column Assignment="33" Source="adherent_s_contact_details_for_portfolio_data" Target="adherent_s_contact_details_for_portfolio_data" DataType="String" />
+        <Column Assignment="34" Source="notice_of_a_discrepancy" Target="notice_of_a_discrepancy" DataType="String" />
+        <Column Assignment="35" Source="dispute_notice" Target="dispute_notice" DataType="String" />
+        <Column Assignment="36" Source="contact_details" Target="contact_details" DataType="String" />
+        <Column Assignment="37" Source="mandatory_reporting" Target="mandatory_reporting" DataType="String" />
+        <Column Assignment="38" Source="delegated_reporting" Target="delegated_reporting" DataType="String" />
+        <Column Assignment="39" Source="delegated_to" Target="delegated_to" DataType="String" />
+        <Column Assignment="40" Source="delegated_reporting_entity_lei" Target="delegated_reporting_entity_lei" DataType="String" />
+        <Column Assignment="41" Source="delegated_reporting_effective_date" Target="delegated_reporting_effective_date" DataType="String" />
+        <Column Assignment="42" Source="applicable_reporting_regime_s_for_client_or_fund" Target="applicable_reporting_regime_s_for_client_or_fund" DataType="String" />
+        <Column Assignment="43" Source="relevant_transactions_and_related_elections" Target="relevant_transactions_and_related_elections" DataType="String" />
+        <Column Assignment="44" Source="mandatory_reporting_opt_out" Target="mandatory_reporting_opt_out" DataType="String" />
+        <Column Assignment="45" Source="mandatory_reporting_opt_out_comments" Target="mandatory_reporting_opt_out_comments" DataType="String" />
+        <Column Assignment="46" Source="disclosure_of_client_status" Target="disclosure_of_client_status" DataType="String" />
+        <Column Assignment="47" Source="transition_between_reporting_models" Target="transition_between_reporting_models" DataType="String" />
+        <Column Assignment="48" Source="relevant_data" Target="relevant_data" DataType="String" />
+        <Column Assignment="49" Source="counterparty_data" Target="counterparty_data" DataType="String" />
+        <Column Assignment="50" Source="counterparty_data_comments" Target="counterparty_data_comments" DataType="String" />
+        <Column Assignment="51" Source="reporting_party_affiliate" Target="reporting_party_affiliate" DataType="String" />
+        <Column Assignment="52" Source="relevant_trade_repository" Target="relevant_trade_repository" DataType="String" />
+        <Column Assignment="53" Source="notice_periods_in_respect_of_amendments" Target="notice_periods_in_respect_of_amendments" DataType="String" />
+        <Column Assignment="54" Source="termination_notice_period" Target="termination_notice_period" DataType="String" />
+        <Column Assignment="55" Source="contact_information" Target="contact_information" DataType="String" />
+        <Column Assignment="56" Source="confidentiality_waiver" Target="confidentiality_waiver" DataType="String" />
+        <Column Assignment="57" Source="confidentiality_waiver_comments" Target="confidentiality_waiver_comments" DataType="String" />
+        <Column Assignment="58" Source="process_agent" Target="process_agent" DataType="String" />
+        <Column Assignment="59" Source="static_data" Target="static_data" DataType="String" />
+        <Column Assignment="60" Source="static_data_comments" Target="static_data_comments" DataType="String" />
+        <Column Assignment="61" Source="uk_legal_entity" Target="uk_legal_entity" DataType="String" />
+        <Column Assignment="62" Source="emir_onboarding_requirements_met" Target="emir_onboarding_requirements_met" DataType="String" />
+        <Column Assignment="63" Source="country_of_incorporation_establishment" Target="country_of_incorporation_establishment" DataType="String" />
+        <Column Assignment="64" Source="isda_status" Target="isda_status" DataType="String" />
+        <Column Assignment="65" Source="registered_address_country" Target="registered_address_country" DataType="String" />
+        <Column Assignment="66" Source="eea_counterparty" Target="eea_counterparty" DataType="String" />
+        <Column Assignment="67" Source="portfolio_reconciliation" Target="portfolio_reconciliation" DataType="String" />
+        <Column Assignment="68" Source="exempt_from_clearing" Target="exempt_from_clearing" DataType="String" />
+        <Column Assignment="69" Source="master_agreement_type" Target="master_agreement_type" DataType="String" />
+        <Column Assignment="70" Source="emir_isda_protocol_adherence" Target="emir_isda_protocol_adherence" DataType="String" />
+        <Column Assignment="71" Source="alternative_investment_fund" Target="alternative_investment_fund" DataType="String" />
+        <Column Assignment="72" Source="associated_asset_manager" Target="associated_asset_manager" DataType="String" />
+        <Column Assignment="73" Source="match_id_markit" Target="match_id_markit" DataType="String" />
+        <Column Assignment="74" Source="data_source" Target="data_source" DataType="String" />
+        <Column Assignment="75" Source="emir_classification_source" Target="emir_classification_source" DataType="String" />
+        <Column Assignment="76" Source="cleared_derivative_execution_agreement" Target="cleared_derivative_execution_agreement" DataType="String" />
+        <Column Assignment="77" Source="clearing_exemption_type" Target="clearing_exemption_type" DataType="String" />
+        <Column Assignment="78" Source="g4_currency_irs_category" Target="g4_currency_irs_category" DataType="String" />
+        <Column Assignment="79" Source="non_g4_second_rate_currency_irs_category" Target="non_g4_second_rate_currency_irs_category" DataType="String" />
+        <Column Assignment="80" Source="cds_itraxx_index_ccps" Target="cds_itraxx_index_ccps" DataType="String" />
+        <Column Assignment="81" Source="uti_generation" Target="uti_generation" DataType="String" />
+    </RecordTemplate>
+</ExtractConfig>
+
+```
+
+assets/templates/Product_OnboardingStatus.xml:
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Source=Target deliberately identical for now - real Target renames come later,
+     once transform is actually needed (see docs/decisions.md). Regenerated 2026-11-17 - column order changed in the new SQL (same column set). -->
+<ExtractConfig ExtractType="CSV" DateFormat="M/d/yyyy h:mm:ss tt" MaxRetry="5">
+    <RecordTemplate>
+        <Column Assignment="1" Source="Fenergo ID" Target="Fenergo ID" DataType="String" />
+        <Column Assignment="2" Source="Legal Entity Name" Target="Legal Entity Name" DataType="String" />
+        <Column Assignment="3" Source="LEI" Target="LEI" DataType="String" />
+        <Column Assignment="4" Source="Product Category" Target="Product Category" DataType="String" />
+        <Column Assignment="5" Source="Product Type" Target="Product Type" DataType="String" />
+        <Column Assignment="6" Source="Booking Entity" Target="Booking Entity" DataType="String" />
+        <Column Assignment="7" Source="Arranging Entity" Target="Arranging Entity" DataType="String" />
+        <Column Assignment="8" Source="Product Status" Target="Product Status" DataType="String" />
+        <Column Assignment="9" Source="Product_Index_Key" Target="Product_Index_Key" DataType="String" />
+        <Column Assignment="10" Source="Associated Asset Manager" Target="Associated Asset Manager" DataType="String" />
+        <Column Assignment="11" Source="Country of Incorporation" Target="Country of Incorporation" DataType="String" />
+        <Column Assignment="12" Source="Principal Place of Business" Target="Principal Place of Business" DataType="String" />
+        <Column Assignment="13" Source="Non-GBM or Agency Indicator" Target="Non-GBM or Agency Indicator" DataType="String" />
+        <Column Assignment="14" Source="Non-GBM or Agency Category" Target="Non-GBM or Agency Category" DataType="String" />
+        <Column Assignment="15" Source="KYC Level" Target="KYC Level" DataType="String" />
+        <Column Assignment="16" Source="US_Person_2013" Target="US_Person_2013" DataType="String" />
+        <Column Assignment="17" Source="US_Person_2020" Target="US_Person_2020" DataType="String" />
+        <Column Assignment="18" Source="US_Guarantee_2013" Target="US_Guarantee_2013" DataType="String" />
+        <Column Assignment="19" Source="US_Guarantee_2020" Target="US_Guarantee_2020" DataType="String" />
+        <Column Assignment="20" Source="US_Conduit_Affiliate_2013" Target="US_Conduit_Affiliate_2013" DataType="String" />
+        <Column Assignment="21" Source="US_NaturalPerson_Incorporated" Target="US_NaturalPerson_Incorporated" DataType="String" />
+        <Column Assignment="22" Source="Swaps_Through_US_Branch" Target="Swaps_Through_US_Branch" DataType="String" />
+        <Column Assignment="23" Source="Swaps_Through_Foreign_Branch" Target="Swaps_Through_Foreign_Branch" DataType="String" />
+        <Column Assignment="24" Source="US_Significant_Risk_Subsidiary" Target="US_Significant_Risk_Subsidiary" DataType="String" />
+        <Column Assignment="25" Source="SBS_Foreign_Branch" Target="SBS_Foreign_Branch" DataType="String" />
+        <Column Assignment="26" Source="Cander_Descope" Target="Cander_Descope" DataType="String" />
+        <Column Assignment="27" Source="DF_Descope" Target="DF_Descope" DataType="String" />
+        <Column Assignment="28" Source="EMIR_Descope" Target="EMIR_Descope" DataType="String" />
+        <Column Assignment="29" Source="FATCA_Descope" Target="FATCA_Descope" DataType="String" />
+        <Column Assignment="30" Source="HKMA_Descope" Target="HKMA_Descope" DataType="String" />
+        <Column Assignment="31" Source="MAS_Descope" Target="MAS_Descope" DataType="String" />
+        <Column Assignment="32" Source="Product ID" Target="Product ID" DataType="String" />
+    </RecordTemplate>
+</ExtractConfig>
+
+```
+
+assets/templates/Singapore_OnboardingStatus.xml:
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Source=Target deliberately identical for now - real Target renames come later,
+     once transform is actually needed (see docs/decisions.md). -->
+<ExtractConfig ExtractType="CSV" DateFormat="M/d/yyyy h:mm:ss tt" MaxRetry="5">
+    <RecordTemplate>
+        <Column Assignment="1" Source="Fenergo ID" Target="Fenergo ID" DataType="String" />
+        <Column Assignment="2" Source="Client Name" Target="Client Name" DataType="String" />
+        <Column Assignment="3" Source="LEI" Target="LEI" DataType="String" />
+        <Column Assignment="4" Source="Global Risk Rating" Target="Global Risk Rating" DataType="String" />
+        <Column Assignment="5" Source="Scheduled Review Date" Target="Scheduled Review Date" DataType="String" />
+        <Column Assignment="6" Source="Singapore Risk Rating" Target="Singapore Risk Rating" DataType="String" />
+        <Column Assignment="7" Source="Singapore Risk Rating (Override)" Target="Singapore Risk Rating (Override)" DataType="String" />
+        <Column Assignment="8" Source="Singapore Next Review Date" Target="Singapore Next Review Date" DataType="String" />
+        <Column Assignment="9" Source="Singapore Next Review Date (Override)" Target="Singapore Next Review Date (Override)" DataType="String" />
+        <Column Assignment="10" Source="United Kingdom Risk Rating" Target="United Kingdom Risk Rating" DataType="String" />
+        <Column Assignment="11" Source="United Kingdom Risk Rating (Override)" Target="United Kingdom Risk Rating (Override)" DataType="String" />
+        <Column Assignment="12" Source="United Kingdom Next Review Date" Target="United Kingdom Next Review Date" DataType="String" />
+        <Column Assignment="13" Source="United Kingdom Next Review Date (Override)" Target="United Kingdom Next Review Date (Override)" DataType="String" />
+        <Column Assignment="14" Source="Product Category" Target="Product Category" DataType="String" />
+        <Column Assignment="15" Source="Product Type" Target="Product Type" DataType="String" />
+        <Column Assignment="16" Source="Booking Entity" Target="Booking Entity" DataType="String" />
+        <Column Assignment="17" Source="Arranging Entity" Target="Arranging Entity" DataType="String" />
+        <Column Assignment="18" Source="Product ID" Target="Product ID" DataType="String" />
+        <Column Assignment="19" Source="MAS Entity Categorisation" Target="MAS Entity Categorisation" DataType="String" />
+    </RecordTemplate>
+</ExtractConfig>
+
+```
+
 
