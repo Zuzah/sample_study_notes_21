@@ -1,4 +1,26 @@
 # sample_study_notes_21
+
+## About Code Scanning
+
+I walked the decision tree against the actual codebase (not just the docs) to be sure:
+
+1. BNS Developed App? → Yes. In-house code, Scotiabank/BNS owns and has full access to this repo.
+
+2. Mobile App? → No. No mobile component anywhere.
+
+3. Web App? (website / web service / web API / microservices) → No. Verified directly in code, not assumed:
+
+No web framework anywhere (fastapi/flask/uvicorn — zero hits in app/, requirements.txt, Dockerfile)
+No listening-port code (.listen(, app.run() anywhere
+No EXPOSE in the Dockerfile
+app/api/ doesn't exist
+→ Result per this workflow: "Not in Scope." This app runs as a one-shot CLI/K8s Job (submit → poll → download → transform → deliver), never as a server. No inbound HTTP exposure exists today, so the Internet Facing / Critical Information Asset / Public Cloud branches never get reached.
+
+
+One real caveat you should know about, not just today's answer: this project has a confirmed-but-not-yet-built feature — the Inbound Notification Listener (docs/inbound_notification_listener.md, roadmap Days 38–40) — where Fenergo will push notifications to an HTTP endpoint we host. Once that's actually implemented, this app becomes a real web API/web service, and this same workflow would very likely route it to Mandatory AppSec. It's not built yet (blocked on 5 open questions), so it doesn't change today's answer, but it's worth re-running this exact assessment when that work starts, and maybe giving AppSec a heads-up now that it's coming.
+
+So, the action on your work machine: none required by this specific gate right now — no SAST/SCA/DAST/MAST scan is mandated, since the app isn't in scope under this policy as it stands today. I'd report back "Not in Scope — CLI/batch job, no web or mobile surface" with the listener caveat attached, rather than running scans that aren't actually called for here.
+
 AML/
 
 app/services/fenergo_service.py:
